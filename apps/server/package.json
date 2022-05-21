@@ -1,0 +1,20 @@
+{
+  "name": "metanalyze-server",
+  "description": "A websocket api to crawl websites and get any meta tag.",
+  "version": "1.0.0",
+  "author": "Marvin Arlt <mail@marvinarlt.de>",
+  "scripts": {
+    "serve:docker": "pm2-runtime start process.yml"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.35",
+    "ts-node": "^10.7.0",
+    "tsconfig-paths": "^4.0.0",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "puppeteer": "^14.1.1",
+    "socket.io": "^4.5.1"
+  }
+}

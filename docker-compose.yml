@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+  server:
+    container_name: "metanalyze-server"
+    build:
+      context: "./apps/server"
+      dockerfile: "Dockerfile.development"
+    restart: "always"
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./apps/server:/srv/www"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.metanalyze-server.entrypoints=websecure"
+      - "traefik.http.routers.metanalyze-server.rule=Host(`metanalyze-server.docker.local`)"
+      - "traefik.http.routers.metanalyze-server.tls=true"
+  client:
+    container_name: "metanalyze-client"
+    build:
+      context: "./apps/client"
+      dockerfile: "Dockerfile.development"
+    restart: "always"
+    depends_on:
+      - "server"
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./apps/client:/srv/www"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.metanalyze-client.entrypoints=websecure"
+      - "traefik.http.routers.metanalyze-client.rule=Host(`metanalyze.docker.local`)"
+      - "traefik.http.routers.metanalyze-client.tls=true"
+networks:
+  default:
+    external:
+      name: "proxy"
