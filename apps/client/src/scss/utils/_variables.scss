@@ -1,0 +1,67 @@
+$globals: (
+  'font-family-default': ('Outfit', sans-serif),
+
+  'font-size-default': 16px,
+  'font-size-small': 14px,
+
+  'font-weight-regular': 400,
+  'font-weight-semi-bold': 600,
+
+  'line-height-default': 1.5em,
+  'line-height-small': 1.2em,
+
+  'color-light': #FFFFFF,
+  'color-dark': #18181C,
+  'color-primary-300': #FFAB57,
+  'color-primary-400': #F88651,
+  'color-primary-500': #F3694C,
+  'color-success': #2EAF59,
+  'color-success-rgb': (46, 175, 89),
+  'color-warning': #F3B64C,
+  'color-warning-rgb': (243, 182, 76),
+  'color-error': #F34C4C,
+  'color-error-rgb': (243, 76, 76),
+
+  'transition-default': 200ms ease,
+  'transition-fast': 100ms ease,
+  'transition-slow': 400ms ease,
+
+  'border-default': 1px solid,
+  'border-radius-default': 0.5rem,
+  'border-radius-small': 0.25rem,
+  'border-radius-tiny': 0.125rem,
+
+  'shadow-default': 0 0.5rem 1rem rgba(var(--color-dark-rgb), 0.2),
+  'shadow-focus': 0 0 0 0.25rem,
+
+  'icon-width-default': 20px,
+  'icon-width-small': 18px,
+  
+  'app-max-width': 1440px
+);
+
+$light: (
+  'color-background-300': #212126,
+  'color-background-400': #1C1C21,
+  'color-background-500': #18181C,
+  'color-border-400': #28282B,
+  'color-text-300': #D8D8D8,
+  'color-text-400': #9B9BA1,
+  'color-text-500': #5C5C63,
+  'color-tooltip-background': #f6f6f6,
+  'color-tooltip-text': #828287,
+  'color-tooltip-border': #d5d5d7
+);
+  
+$dark: (
+  'color-background-300': #212126,
+  'color-background-400': #1C1C21,
+  'color-background-500': #18181C,
+  'color-border-400': #28282B,
+  'color-text-300': #D8D8D8,
+  'color-text-400': #9B9BA1,
+  'color-text-500': #5C5C63,
+  'color-tooltip-background': #f6f6f6,
+  'color-tooltip-text': #828287,
+  'color-tooltip-border': #d5d5d7
+);

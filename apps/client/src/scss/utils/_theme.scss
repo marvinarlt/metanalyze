@@ -1,0 +1,23 @@
+:root {
+  @include printCustomProperties($globals);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    @include printCustomProperties($light);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include printCustomProperties($dark);
+  }
+}
+
+html[data-theme="light"] {
+  @include printCustomProperties($light);
+}
+
+html[data-theme="dark"] {
+  @include printCustomProperties($dark);
+}

@@ -1,0 +1,6 @@
+@include fontFace(
+  $fontName: "Outfit",
+  $fileName: "outfit-v5-latin",
+  $extensions: ("woff2", "woff", "ttf", "eot", "svg"),
+  $fontWeights: (400, 600)
+);

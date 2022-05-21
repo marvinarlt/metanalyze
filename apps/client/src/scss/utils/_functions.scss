@@ -1,0 +1,24 @@
+@use 'sass:math';
+
+/// Returns the font size for the body in percent.
+///
+/// @param string $fontSize - The base font size in pixel.
+@function rootFontSize($fontSize) {
+  @return 100% * math.div($fontSize, 16px);
+}
+
+/// Convert px to rem.
+///
+/// @param string $size
+/// @param string $context - Default: 16px
+@function rem($size, $context: 16px) {
+  @return math.div($size, $context) * 1rem;
+}
+
+@function prop($name) {
+  @return var(--#{$name});
+}
+
+@function value($name, $list: $globals) {
+  @return map-get($list, $name);
+}

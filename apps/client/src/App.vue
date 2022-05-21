@@ -1,21 +1,20 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import { computed, watch } from 'vue';
+import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+import DefaultLayout from '@app/layouts/DefaultLayout.vue';
+
+const router = useRouter();
+const i18n = useI18n();
+const layoutComponent = computed(() => router.currentRoute.value.meta?.layout || DefaultLayout);
+
+watch(i18n.locale, () => {
+  console.log('Locale updated: ', i18n.locale);
+});
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <component :is="layoutComponent">
+    <RouterView />
+  </component>
 </template>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

@@ -1,0 +1,42 @@
+html {
+  font-family: prop('font-family-default');
+  font-size: rootFontSize(value('font-size-default'));
+  line-height: prop('line-height-default');
+  color: prop('color-text-400');
+}
+
+body {
+  background-color: prop('color-background-400');
+  transition: background-color prop('transition-default');
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  display: block;
+  margin: 0 0 1em 0;
+  font-weight: prop('font-weight-semi-bold');
+  line-height: prop('line-height-small');
+  color: prop('color-text-300');
+}
+
+p {
+  margin: 0 0 1.5em 0;
+  font-size: rem(value('font-size-default'));
+  line-height: prop('line-height-default');
+  color: prop('color-text-400');
+}
+
+a {
+  display: inline-block;
+  color: prop('color-primary-400');
+  text-decoration: none;
+  transition: prop('transition-default');
+
+  &:hover {
+    text-decoration: 2px underline;
+  }
+}

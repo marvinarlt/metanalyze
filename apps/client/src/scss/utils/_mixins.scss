@@ -1,0 +1,67 @@
+@use 'sass:list';
+
+@mixin printCustomProperties($variables) {
+  @each $name, $value in $variables {
+    --#{$name}: #{$value};
+  }
+}
+
+/// Load new fonts easy.
+///
+/// @param string $fontName - The font family name.
+/// @param string $fileName - The basename of the font file.
+/// @param list $extensions - A list with file extensions.
+/// @param list $fontWeights - The font weight. Default: 400
+/// @param string $fontStyle - The font style. Default: normal
+/// @param string $fontDisplay - The font display. Default: swap
+@mixin fontFace($fontName, $fileName, $extensions, $fontWeights: (400), $fontStyle: normal, $fontDisplay: swap) {
+  $basePath: '/assets/fonts/';
+  
+  @each $fontWeight in $fontWeights {
+    $fullName: $fileName;
+    $fontWeightName: $fontWeight;
+    $sources: ();
+
+    @if 400 == $fontWeight {
+      $fontWeightName: 'regular';
+    }
+  
+    @if 0 < $fontWeight and 'italic' == $fontStyle {
+      $fullName: '#{$fullName}-#{$fontWeightName}#{$fontStyle}';
+    }
+    @else if 'italic' == $fontStyle {
+      $fullName: '#{$fullName}-#{$fontStyle}';
+    }
+    @else if 0 < $fontWeight {
+      $fullName: '#{$fullName}-#{$fontWeightName}';
+    }
+  
+    @each $extension in $extensions {
+      $filePath: '#{$basePath}#{$fullName}.#{$extension}';
+      $format: $extension;
+  
+      @if 'eot' == $format {
+        $format: 'embedded-opentype';
+        $filePath: '#{$filePath}?#iefix';
+      }
+  
+      @if 'ttf' == $format {
+        $format: 'truetype';
+      }
+  
+      @if 'svg' == $format {
+        $filePath: '#{$filePath}##{$fontName}';
+      }
+  
+      $sources: list.append($sources, url('#{$filePath}') format('#{$format}'), comma);
+    }
+  
+    @font-face {
+      font-family: $fontName;
+      font-weight: $fontWeight;
+      font-style: $fontStyle;
+      font-display: $fontDisplay;
+      src: $sources;
+    }
+  }
+}

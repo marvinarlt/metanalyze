@@ -1,0 +1,24 @@
+.margin-bottom {
+  margin-bottom: 1rem;
+}
+
+.margin-top {
+  margin-top: 1rem;
+}
+
+.font {
+  &-default {
+    font-size: rem(value('font-size-default'));
+  }
+
+  &-small {
+    font-size: rem(value('font-size-small'));
+  }
+}
+
+.icon {
+  display: inline-block;
+  width: prop('icon-width-default');
+  height: auto;
+  color: prop('color-text-400');
+}
