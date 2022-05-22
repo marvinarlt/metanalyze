@@ -1,0 +1,119 @@
+.locale-switcher {
+  position: relative;
+  display: inline-block;
+
+  &-button {
+    cursor: pointer;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    width: 12rem;
+    margin: 0;
+    padding: 1rem 1.5rem;
+    background-color: prop('color-background-200');
+    color: prop('color-text-300');
+    border-radius: prop('border-radius-small');
+    line-height: prop('line-height-default');
+    transition: prop('transition-default');
+
+    &-flag {
+    }
+
+    &-label {
+
+    }
+
+    &-icon {
+      display: block;
+      margin: 0 0 0 auto;
+
+      > .icon {
+        transition: prop('transition-default');
+      }
+    }
+
+    &:hover {
+      background-color: prop('color-background-100');
+    }
+  }
+
+  &-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: block;
+    width: 100%;
+    max-height: 10rem;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    background-color: prop('color-background-300');
+    border-radius: prop('border-radius-small');
+    transition: prop('transition-default');
+    transform: translateY(-1rem);
+    overflow: auto;
+    visibility: hidden;
+    opacity: 0;
+
+    &-item {
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      line-height: prop('line-height-default');
+
+      &-icon {
+        margin-right: 0.5rem;
+      }
+
+      &-label {
+        display: block;
+        width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      &.current {
+        background-color: prop('color-background-200');
+      }
+
+      &:hover {
+        background-color: prop('color-background-100');
+      }
+    } 
+  }
+
+  &-flag {
+    display: inline-block;
+    width: prop('icon-width-default');
+    height: prop('icon-width-default');
+    border-radius: 50%;
+    vertical-align: text-bottom;
+    overflow: hidden;
+
+    .country-flag {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &.is-open {
+    .locale-switcher {
+      &-button-icon {
+        > .icon {
+          transform: rotate(-90deg);
+        }
+      }
+
+      &-list {
+        transform: translateY(0);
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+}

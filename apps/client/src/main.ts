@@ -4,7 +4,6 @@ import router from '@app/routing/router';
 import i18n from '@app/i18n';
 
 import '@app/scss/main.scss';
-import 'remixicon/fonts/remixicon.css';
 
 createApp(App)
   .use(router)

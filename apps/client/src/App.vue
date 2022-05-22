@@ -9,7 +9,7 @@ const i18n = useI18n();
 const layoutComponent = computed(() => router.currentRoute.value.meta?.layout || DefaultLayout);
 
 watch(i18n.locale, () => {
-  console.log('Locale updated: ', i18n.locale);
+  console.log('Locale updated:', i18n.locale.value);
 });
 </script>
 

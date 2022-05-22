@@ -1,3 +1,11 @@
 {
+  "locales": {
+    "en": "English",
+    "de": "German"
+  },
+  "flag-icons": {
+    "en": "Flag icon of Great Britain",
+    "de": "Flag icon of Germany"
+  },
   "hello-world": "Hello World"
 }
