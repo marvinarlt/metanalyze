@@ -1,11 +1,26 @@
+/// Utils
+////////////////////////////////////////
 @import "utils/variables";
 @import "utils/functions";
 @import "utils/mixins";
 @import "utils/theme";
 
+/// Globals
+////////////////////////////////////////
 @import "globals/typography";
 @import "globals/reset";
 @import "globals/base";
 @import "globals/helpers";
 
-@import "components/the-locale-switcher";
+/// Layouts
+////////////////////////////////////////
+@import "layout/default";
+
+/// Components
+////////////////////////////////////////
+@import "components/button";
+@import "components/input";
+@import "components/textarea";
+@import "components/checkbox";
+@import "components/tabs";
+@import "components/the-locale-changer";

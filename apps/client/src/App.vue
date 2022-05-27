@@ -2,6 +2,7 @@
 import { computed, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
+import { saveLocale } from '@app/services/i18n';
 import DefaultLayout from '@app/layouts/DefaultLayout.vue';
 
 const router = useRouter();
@@ -9,7 +10,7 @@ const i18n = useI18n();
 const layoutComponent = computed(() => router.currentRoute.value.meta?.layout || DefaultLayout);
 
 watch(i18n.locale, () => {
-  console.log('Locale updated:', i18n.locale.value);
+  saveLocale(i18n.locale.value);
 });
 </script>
 

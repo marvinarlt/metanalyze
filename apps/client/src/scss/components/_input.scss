@@ -1,0 +1,27 @@
+.input {
+  display: block;
+  width: 100%;
+  margin: 0 0 1rem 0;
+  padding: 0.75rem 1rem;
+  background-color: prop('color-background-400');
+  color: prop('color-text-400');
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: prop('line-height-default');
+  border: prop('border-default') prop('color-border-400');
+  border-radius: prop('border-radius-small');
+  transition: prop('transition-default');
+
+  &::placeholder {
+    color: prop('color-text-500');
+  }
+
+  &:focus {
+    outline: none;
+    border-color: prop('color-primary-400');
+  }
+
+  &:hover:not(:focus) {
+    border-color: prop('color-border-300');
+  }
+}

@@ -7,5 +7,22 @@
     "en": "Flaggen Icon von Großbritannien",
     "de": "Flaggen Icon von Deutschland"
   },
+  "branding": {
+    "alt": "Das Branding von Metanalyze"
+  },
+  "navigation": {
+    "index": {
+      "label": "Start",
+      "title": "Metanalyze"
+    },
+    "imprint": {
+      "label": "Impressum",
+      "title": "Impressum - Metanalyze"
+    },
+    "privacy-policy": {
+      "label": "Datenschutz",
+      "title": "Datenschutz - Metanalyze"
+    }
+  },
   "hello-world": "Hallo Welt"
 }

@@ -36,5 +36,5 @@ services:
       - "traefik.http.routers.metanalyze-client.tls=true"
 networks:
   default:
-    external:
-      name: "proxy"
+    name: "proxy"
+    external: true

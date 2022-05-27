@@ -7,5 +7,22 @@
     "en": "Flag icon of Great Britain",
     "de": "Flag icon of Germany"
   },
+  "branding": {
+    "alt": "The branding of Metanalyze"
+  },
+  "navigation": {
+    "index": {
+      "label": "Home",
+      "title": "Metanalyze"
+    },
+    "imprint": {
+      "label": "Imprint",
+      "title": "Imprint - Metanalyze"
+    },
+    "privacy-policy": {
+      "label": "Privacy Policy",
+      "title": "Privacy Policy - Metanalyze"
+    }
+  },
   "hello-world": "Hello World"
 }

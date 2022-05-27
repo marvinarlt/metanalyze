@@ -1,0 +1,46 @@
+.tabs {
+  &-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    
+    &-wrapper {
+      position: relative;
+      display: block;
+    }
+  }
+
+  &-labels {
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+    &-item {
+      cursor: pointer;
+      display: block;
+      padding: 0.75rem 1rem;
+      border-bottom: prop('border-default') prop('color-border-400');
+      border-radius: prop('border-radius-small') prop('border-radius-small') 0 0;
+      transition: prop('transition-default');
+      
+      &:hover {
+        background-color: prop('color-background-300');
+      }
+    }
+  }
+
+  &-active-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 0;
+    height: rem(1px);
+    background-color: prop('color-primary-400');
+    transition: prop('transition-default');
+  }
+
+  &-content {
+    display: block;
+  }
+}
