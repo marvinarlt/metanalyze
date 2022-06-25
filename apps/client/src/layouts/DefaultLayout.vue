@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TheLocaleChanger from '@app/components/TheLocaleChanger.vue';
+import TheLocaleSelect from '@app/components/TheLocaleSelect.vue';
 
 const currentYear = new Date().getFullYear();
 </script>
@@ -11,7 +11,7 @@ const currentYear = new Date().getFullYear();
         <img class="navigation-branding-image" src="/assets/images/branding.svg" :alt="$t('branding.alt')">
       </RouterLink>
       <div class="navigation-tools">
-        <TheLocaleChanger />
+        <TheLocaleSelect />
       </div>
     </div>
     <main>

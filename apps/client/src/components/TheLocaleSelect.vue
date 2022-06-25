@@ -18,27 +18,27 @@ const selectLocale = (locale: string) => {
 </script>
 
 <template>
-  <div :class="{ 'locale-switcher': true, 'is-open': isOpen }">
-    <div class="locale-switcher-button" @click.prevent="toggleDropDown">
-      <span class="locale-switcher-button-flag locale-switcher-flag">
+  <div :class="{ 'locale-select': true, 'is-open': isOpen }">
+    <div class="locale-select-button" @click.prevent="toggleDropDown">
+      <span class="locale-select-button-flag locale-select-flag">
         <CountryFlag :locale="$i18n.locale" />
       </span>
       <span class="locale-swticher-button-label">{{ $t(`locales.${ $i18n.locale }`) }}</span>
-      <span class="locale-switcher-button-icon">
+      <span class="locale-select-button-icon">
         <ChevronDownIcon />
       </span>
     </div>
-    <ul class="locale-switcher-list">
+    <ul class="locale-select-list">
       <template v-for="availableLocale in $i18n.availableLocales" :key="availableLocale">
         <li
-          :class="{ 'locale-switcher-list-item': true, 'current': $i18n.locale == availableLocale }"
+          :class="{ 'locale-select-list-item': true, 'current': $i18n.locale == availableLocale }"
           :title="$t(`locales.${ availableLocale }`)"
           @click.prevent="selectLocale(availableLocale)"
         >
-          <span class="locale-switcher-list-item-icon locale-switcher-flag">
+          <span class="locale-select-list-item-icon locale-select-flag">
             <CountryFlag :locale="availableLocale" />
           </span>
-          <span class="locale-switcher-list-item-label">{{ $t(`locales.${ availableLocale }`) }}</span>
+          <span class="locale-select-list-item-label">{{ $t(`locales.${ availableLocale }`) }}</span>
         </li>
       </template>
     </ul>
