@@ -1,4 +1,25 @@
 /**
+ * Save locale to localStorage.
+ * 
+ * @param {string} locale
+ * @returns {void}
+ */
+ export function saveLocale(locale: string): void {
+  localStorage.setItem('locale', locale);
+}
+
+/**
+ * Get locale from localStorage.
+ * 
+ * @returns {string | null}
+ */
+export function getSavedLocale(): string | null {
+  return localStorage.getItem('locale');
+}
+
+/**
+ * Get locale from browsers navigator.
+ * 
  * @returns {string}
  */
 export function getBrowserLocale(): string {
@@ -10,25 +31,11 @@ export function getBrowserLocale(): string {
 }
 
 /**
- * @param {string} locale
- * @returns {void}
- */
-export function saveLocale(locale: string): void {
-  localStorage.setItem('locale', locale);
-}
-
-/**
- * @returns {string | null}
- */
-export function getSavedLocale(): string | null {
-  return localStorage.getItem('locale');
-}
-
-/**
+ * Get saved locale or get locale from browser.
  * 
- * @returns 
+ * @returns {string}
  */
-export function getClientLocale(): string {
+export function resolveLocale(): string {
   const savedLocale = getSavedLocale();
 
   if (typeof savedLocale === 'string') {

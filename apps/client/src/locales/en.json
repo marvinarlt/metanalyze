@@ -24,5 +24,20 @@
       "title": "Privacy Policy - Metanalyze"
     }
   },
+  "pages": {
+    "index": {
+      "url": {
+        "label": "URL",
+        "placeholder": "https://www.example.com",
+        "checkbox": "Crawl complete website",
+        "submit": "Check website"
+      },
+      "snippet": {
+        "label": "Snippet",
+        "placeholder": "Insert HTML snippet",
+        "submit": "Check snippet"
+      }
+    }
+  },
   "hello-world": "Hello World"
 }

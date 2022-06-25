@@ -24,5 +24,20 @@
       "title": "Datenschutz - Metanalyze"
     }
   },
+  "pages": {
+    "index": {
+      "url": {
+        "label": "URL",
+        "placeholder": "https://www.beispiel.de",
+        "checkbox": "Gesamte Website durchsuchen",
+        "submit": "Website prüfen"
+      },
+      "snippet": {
+        "label": "Schnipsel",
+        "placeholder": "HTML Schnipsel einfügen",
+        "submit": "Schnipsel prüfen"
+      }
+    }
+  },
   "hello-world": "Hallo Welt"
 }

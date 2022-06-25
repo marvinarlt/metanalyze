@@ -1,9 +1,9 @@
 .checkbox {
+  cursor: pointer;
   display: block;
   margin-bottom: 1rem;
 
   &-element {
-    cursor: pointer;
     position: relative;
     display: inline-block;
     width: 1rem;
@@ -14,8 +14,18 @@
     vertical-align: sub;
     transition: prop('transition-default');
 
-    &:hover {
-      border-color: prop('color-text-500');
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 2.2rem;
+      height: 2.2rem;
+      background-color: prop('color-border-300');
+      border-radius: 50%;
+      transition: prop('transition-default');
+      z-index: -1;
     }
   }
 
@@ -24,8 +34,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 0.8rem;
     stroke-dashoffset: 24;
     stroke-dasharray: 24;
+    stroke-width: 4;
     color: prop('color-light');
     transition: prop('transition-default');
   }
@@ -46,6 +58,16 @@
   
         &-icon {
           stroke-dashoffset: 0;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .checkbox {
+      &-element {
+        &::before {
+          transform: translate(-50%, -50%) scale(1);
         }
       }
     }

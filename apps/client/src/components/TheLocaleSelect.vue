@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useI18n } from 'vue-i18n';
 import { ChevronDownIcon } from 'vue-tabler-icons';
+import { useI18n } from '@app/composables/i18n';
 import CountryFlag from '@app/components/CountryFlag.vue';
 
-const i18n = useI18n();
+const { setLocale } = useI18n();
 const isOpen = ref(false);
 
 const toggleDropDown = () => {
@@ -12,7 +12,7 @@ const toggleDropDown = () => {
 }
 
 const selectLocale = (locale: string) => {
-  i18n.locale.value = locale;
+  setLocale(locale);
   isOpen.value = false;
 }
 </script>

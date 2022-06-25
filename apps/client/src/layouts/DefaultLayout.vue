@@ -14,7 +14,7 @@ const currentYear = new Date().getFullYear();
         <TheLocaleSelect />
       </div>
     </div>
-    <main>
+    <main class="main">
       <slot></slot>
     </main>
     <footer class="footer">
