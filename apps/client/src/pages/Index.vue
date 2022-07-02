@@ -8,10 +8,10 @@
 <template>
   <div class="page-index">
     <Tabs>
-      <Tab :label="$t('pages.index.url.label')">
+      <Tab label="pages.index.url.label">
         <TheUrlTab />
       </Tab>
-      <Tab :label="$t('pages.index.snippet.label')">
+      <Tab label="pages.index.snippet.label">
         <TheSnippetTab />
       </Tab>
     </Tabs>

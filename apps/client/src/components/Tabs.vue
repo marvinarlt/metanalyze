@@ -1,11 +1,11 @@
 <script setup lang="ts">
-  import { useSlots, ref, provide } from 'vue';
+  import { useSlots, ref, provide, Ref } from 'vue';
 
-  const slots = useSlots();
+  const slots: any = useSlots();
   const defaultSlot = slots.default();
-  const labels = ref(defaultSlot.map((tab) => tab.props.label));
-  const selectedLabel = ref(labels.value[0]);
-  const activeIndicator = ref(null);
+  const labels: Ref<string[]> = ref(defaultSlot.map((tab: any) => tab?.props?.label));
+  const selectedLabel: Ref<string> = ref(labels.value[0]);
+  const activeIndicator: Ref<HTMLElement | null> = ref(null);
 
   provide('selectedLabel', selectedLabel);
 
@@ -38,7 +38,7 @@
       <div class="tabs-header-wrapper">
         <ul class="tabs-labels">
           <template v-for="label in labels" :key="label">
-            <li class="tabs-labels-item" @click="selectTab($event, label)" @vnode-mounted="setIndicator($event, label)">{{ label }}</li>
+            <li class="tabs-labels-item" @click="selectTab($event, label)" @vnode-mounted="setIndicator($event, label)">{{ $t(label) }}</li>
           </template>
         </ul>
         <div class="tabs-active-indicator" ref="activeIndicator"></div>
