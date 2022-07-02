@@ -1,19 +1,19 @@
 <script setup lang="ts">
-  import { useNotifications } from '@app/composables/notifications';
+  import { useNotification } from '@app/composables/notification';
   import Notification from '@app/components/Notification.vue';
 
-  const { state } = useNotifications();
+  const { notifications } = useNotification();
 </script>
 
 <template>
   <div class="notifications">
     <TransitionGroup name="notification">
       <Notification
-        v-for="notification in state.notifications"
-        :key="notification.id"
-        :type="notification.type"
-        :title="notification.title"
-        :body="notification.body"
+        v-for="{ id, type, title, body } in notifications"
+        :key="id"
+        :type="type"
+        :title="title"
+        :body="body"
       />
     </TransitionGroup>
   </div>

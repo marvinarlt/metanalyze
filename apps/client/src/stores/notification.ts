@@ -16,24 +16,15 @@ export const notificationStore = reactive({
    * Add a notification to the stack.
    * 
    * @param {Notification} notification 
-   * @param {number} timeout
    * @returns {void} 
    */
-  add(notification: Notification, timeout: number = 5000): void {
-    let randomId = Math.random().toString(36).slice(2);
-
-    this.state.notifications.unshift({
-      id: randomId,
-      ...notification
-    });
-    
-    setTimeout(this.remove.bind(this), timeout);
+  add(notification: Notification): void {
+    this.state.notifications.unshift(notification);
   },
 
   /**
    * Removes the first notification item from the stack.
    * 
-   * @param {string} randomId
    * @returns {Notification | undefined}
    */
   remove(): Notification | undefined {

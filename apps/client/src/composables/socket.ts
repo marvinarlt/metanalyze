@@ -1,5 +1,5 @@
 import { io, Socket } from 'socket.io-client';
-import { useNotifications } from '@app/composables/notifications';
+import { useNotification } from '@app/composables/notification';
 import { socketStore } from '@app/stores/socket';
 
 export function useSocket() {
@@ -9,7 +9,7 @@ export function useSocket() {
     VITE_SOCKET_PATH
   } = import.meta.env;
 
-  const notifications = useNotifications();
+  const notifications = useNotification();
   let connection = socketStore.get();
 
   /**
