@@ -9,8 +9,8 @@
   <div class="notifications">
     <TransitionGroup name="notification">
       <Notification
-        v-for="notification, index in state.notifications"
-        :key="index"
+        v-for="notification in state.notifications"
+        :key="notification.id"
         :type="notification.type"
         :title="notification.title"
         :body="notification.body"

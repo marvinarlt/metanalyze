@@ -1,18 +1,15 @@
 import { reactive } from 'vue';
 
 export type Notification = {
+  id?: string,
   type: 'info' | 'success' | 'warning' | 'error',
   title: string,
   body: string,
 }
 
-export type Notifications = {
-  [id: string]: Notification
-}
-
 export const notificationStore = reactive({
   state: <any> {
-    notifications: {}
+    notifications: [] as Notification[]
   },
 
   /**
@@ -25,21 +22,21 @@ export const notificationStore = reactive({
   add(notification: Notification, timeout: number = 5000): void {
     let randomId = Math.random().toString(36).slice(2);
 
-    this.state.notifications = {
-      [randomId]: notification,
-      ...this.state.notifications
-    };
+    this.state.notifications.unshift({
+      id: randomId,
+      ...notification
+    });
     
-    setTimeout(this.remove.bind(this, randomId), timeout);
+    setTimeout(this.remove.bind(this), timeout);
   },
 
   /**
    * Removes the first notification item from the stack.
    * 
    * @param {string} randomId
-   * @returns {void}
+   * @returns {Notification | undefined}
    */
-  remove(randomId: string): void {
-    delete this.state.notifications[randomId];
+  remove(): Notification | undefined {
+    return this.state.notifications.pop();
   }
 });
