@@ -39,5 +39,15 @@
       }
     }
   },
+  "errors": {
+    "paragraph": "Errors occurred while submitting:",
+    "invalid-url": "Invalid URL"
+  },
+  "notifications": {
+    "disconnected": {
+      "title": "Connection disconnected",
+      "body": "The connection to the server was interrupted. Wait or reload the page to restore the connection."
+    }
+  },
   "hello-world": "Hello World"
 }

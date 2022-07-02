@@ -39,5 +39,15 @@
       }
     }
   },
+  "errors": {
+    "paragraph": "Fehler sind beim Absenden aufgetreten:",
+    "invalid-url": "Ungültige URL"
+  },
+  "notifications": {
+    "disconnected": {
+      "title": "Verbindung getrennt",
+      "body": "Die Verbindung zum Server wurde unterbrochen. Warten Sie oder laden Sie die Seite neu, um die Verbindung wiederherzustellen."
+    }
+  },
   "hello-world": "Hallo Welt"
 }
