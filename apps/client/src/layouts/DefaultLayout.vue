@@ -7,7 +7,7 @@ const currentYear = new Date().getFullYear();
 <template>
   <div class="layout-default">
     <div class="navigation">
-      <RouterLink class="navigation-branding" to="/" :title="$t('navigation.home.title')">
+      <RouterLink class="navigation-branding" to="/" :title="$t('navigation.index.title')">
         <img class="navigation-branding-image" src="/assets/images/branding.svg" :alt="$t('branding.alt')">
       </RouterLink>
       <div class="navigation-tools">
