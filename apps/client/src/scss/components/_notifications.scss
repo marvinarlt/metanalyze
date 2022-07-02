@@ -1,0 +1,10 @@
+.notifications {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  width: calc(100% - 2rem);
+  max-width: 20rem;
+}

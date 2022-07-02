@@ -1,0 +1,56 @@
+.notification {
+  display: block;
+  padding: 0.5rem;
+  font-size: prop('font-size-small');
+  border-radius: prop('border-radius-small');
+  transition: prop('transition-default');
+
+  &-title {
+    margin-bottom: 0.5em;
+    color: inherit;
+    font-size: inherit;
+  }
+
+  &-body {
+    margin: 0;
+    color: inherit;
+    font-size: inherit;
+  }
+
+  &-info {
+    background-color: prop('color-background-100');
+    color: prop('color-text-400');
+  }
+
+  &-success {
+    background-color: prop('color-success');
+    color: prop('color-light');
+  }
+
+  &-warning {
+    background-color: prop('color-warning');
+    color: prop('color-light');
+  }
+
+  &-error {
+    background-color: prop('color-error');
+    color: prop('color-light');
+  }
+
+  &-move,
+  &-enter-active,
+  &-leave-active {
+    transition: prop('transition-default');
+    transform-origin: center top;
+  }
+
+  &-enter-from {
+    transform: scaleY(0.01) translateX(calc(100% + 1rem));
+    opacity: 0;
+  }
+
+  &-leave-to {
+    transform: translateX(calc(100% + 1rem));
+    opacity: 0;
+  }
+}
