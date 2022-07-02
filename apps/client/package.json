@@ -1,5 +1,5 @@
 {
-  "name": "metanaylze",
+  "name": "metanalyze",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite --host",
