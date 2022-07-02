@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { inject } from 'vue';
+  import { inject } from 'vue';
 
-defineProps<{
-  label: string
-}>();
+  defineProps<{
+    label: string
+  }>();
 
-const selectedLabel = inject('selectedLabel');
+  const selectedLabel = inject('selectedLabel');
 </script>
 
 <template>

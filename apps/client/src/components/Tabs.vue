@@ -1,35 +1,35 @@
 <script setup lang="ts">
-import { useSlots, ref, provide } from 'vue';
+  import { useSlots, ref, provide } from 'vue';
 
-const slots = useSlots();
-const defaultSlot = slots.default();
-const labels = ref(defaultSlot.map((tab) => tab.props.label));
-const selectedLabel = ref(labels.value[0]);
-const activeIndicator = ref(null);
+  const slots = useSlots();
+  const defaultSlot = slots.default();
+  const labels = ref(defaultSlot.map((tab) => tab.props.label));
+  const selectedLabel = ref(labels.value[0]);
+  const activeIndicator = ref(null);
 
-provide('selectedLabel', selectedLabel);
+  provide('selectedLabel', selectedLabel);
 
-const selectTab = (event: MouseEvent, label: string) => {
-  selectedLabel.value = label;
-  updateIndicator(event.target);
-}
-
-const updateIndicator = (labelItem: any) => {
-  if (null === activeIndicator.value) {
-    return;
+  const selectTab = (event: MouseEvent, label: string) => {
+    selectedLabel.value = label;
+    updateIndicator(event.target);
   }
 
-  activeIndicator.value.style.width = `${ labelItem.clientWidth }px`;
-  activeIndicator.value.style.left = `${ labelItem.offsetLeft }px`;
-}
+  const updateIndicator = (labelItem: any) => {
+    if (null === activeIndicator.value) {
+      return;
+    }
 
-const setIndicator = (event: any, label: string) => {
-  if (selectedLabel.value !== label) {
-    return;
+    activeIndicator.value.style.width = `${ labelItem.clientWidth }px`;
+    activeIndicator.value.style.left = `${ labelItem.offsetLeft }px`;
   }
 
-  updateIndicator(event.el);
-}
+  const setIndicator = (event: any, label: string) => {
+    if (selectedLabel.value !== label) {
+      return;
+    }
+
+    updateIndicator(event.el);
+  }
 </script>
 
 <template>

@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { ChevronDownIcon } from 'vue-tabler-icons';
-import { useI18n } from '@app/composables/i18n';
-import CountryFlag from '@app/components/CountryFlag.vue';
+  import { ref } from 'vue';
+  import { ChevronDownIcon } from 'vue-tabler-icons';
+  import { useI18n } from '@app/composables/i18n';
+  import CountryFlag from '@app/components/CountryFlag.vue';
 
-const { setLocale } = useI18n();
-const isOpen = ref(false);
+  const { setLocale } = useI18n();
+  const isOpen = ref(false);
 
-const toggleDropDown = () => {
-  isOpen.value = ! isOpen.value;
-}
+  const toggleDropDown = () => {
+    isOpen.value = ! isOpen.value;
+  }
 
-const selectLocale = (locale: string) => {
-  setLocale(locale);
-  isOpen.value = false;
-}
+  const selectLocale = (locale: string) => {
+    setLocale(locale);
+    isOpen.value = false;
+  }
 </script>
 
 <template>
