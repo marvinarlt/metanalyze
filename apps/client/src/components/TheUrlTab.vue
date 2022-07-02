@@ -1,11 +1,21 @@
 <script setup lang="ts">
-  import { ref } from 'vue';
+  import { ref, Ref } from 'vue';
   import { ArrowRightIcon, CheckIcon } from 'vue-tabler-icons';
+  import { useValidation } from '@app/composables/validation';
+  import FormError from '@app/components/FormError.vue';
 
-  const url = ref('');
-  const shouldCrawl = ref(false);
+  const { isUrl } = useValidation();
+
+  const errors: Ref<string[]> = ref([]);
+  const url: Ref<string> = ref('');
+  const shouldCrawl: Ref<boolean> = ref(false);
 
   const startUrlCheck = () => {
+    if (! isUrl(url.value)) {
+       errors.value.push('invalid-url');
+       return;
+    }
+
     // TODO: Validate URL
     console.log(url.value, shouldCrawl.value);
   }
@@ -13,6 +23,7 @@
 
 <template>
   <form class="form" @submit.prevent="startUrlCheck">
+    <FormError :errors="errors" />
     <input class="input" type="url" name="url" :placeholder="$t('pages.index.url.placeholder')" required v-model="url">
     <input class="checkbox-input" type="checkbox" name="crawl" id="crawl" v-model="shouldCrawl">
     <label class="checkbox" for="crawl">

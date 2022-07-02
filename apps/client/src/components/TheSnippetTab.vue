@@ -1,8 +1,8 @@
 <script setup lang="ts">
-  import { ref } from 'vue';
+  import { ref, Ref } from 'vue';
   import { ArrowRightIcon } from 'vue-tabler-icons';
 
-  const snippet = ref('');
+  const snippet: Ref<string> = ref('');
 
   const startSnippetCheck = () => {
     console.log(snippet.value);
