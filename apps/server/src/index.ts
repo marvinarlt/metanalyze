@@ -22,8 +22,12 @@ const ioServer = new Server(httpServer, {
 
 ioServer.on('connection', (socket) => {
   console.log('Client connected');
+
+  socket.on('url:start', (data) => {
+    console.log(data);
+  });
 });
 
 httpServer.listen(SERVER_HOST_PORT, () => {
-  console.log(`Server is running on ${ SERVER_HOST_NAME }:${ SERVER_HOST_PORT }`)
+  console.log(`Server is running on ${ SERVER_HOST_NAME }:${ SERVER_HOST_PORT }`);
 });
