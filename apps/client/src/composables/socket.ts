@@ -1,5 +1,6 @@
-import { io } from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 import { useNotifications } from '@app/composables/notifications';
+import { socketStore } from '@app/stores/socket';
 
 export function useSocket() {
   const {
@@ -9,17 +10,21 @@ export function useSocket() {
   } = import.meta.env;
 
   const notifications = useNotifications();
-  let connection = null;
+  let connection = socketStore.get();
 
   /**
    * Connects to the websocket server.
    * 
-   * @returns {void}
+   * @returns {Socket}
    */
-  const connect = (): void => {
-    connection = io(`${ VITE_SOCKET_PROTOCOL }://${ VITE_SOCKET_HOST }`, {
+  const connect = (): Socket => {
+    return io(`${ VITE_SOCKET_PROTOCOL }://${ VITE_SOCKET_HOST }`, {
       path: VITE_SOCKET_PATH
     });
+  }
+
+  if (null === connection) {
+    connection = connect();
 
     connection.on('disconnect', () => {
       notifications.add({
@@ -28,10 +33,12 @@ export function useSocket() {
         body: 'notifications.disconnected.body'
       }, 10000);
     });
+
+    socketStore.set(connection as Socket);
   }
 
   return {
-    connect,
-    connection
+    connection,
+    connect
   }
 }

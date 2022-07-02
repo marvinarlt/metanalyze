@@ -2,9 +2,11 @@
   import { ref, Ref } from 'vue';
   import { ArrowRightIcon, CheckIcon } from 'vue-tabler-icons';
   import { useValidation } from '@app/composables/validation';
+  import { useSocket} from '@app/composables/socket';
   import FormError from '@app/components/FormError.vue';
 
   const { isUrl } = useValidation();
+  const { connection } = useSocket();
 
   const errors: Ref<string[]> = ref([]);
   const url: Ref<string> = ref('');
@@ -15,6 +17,11 @@
        errors.value.push('invalid-url');
        return;
     }
+
+    connection.emit('url:start', {
+      url: url.value,
+      shouldCrawl: shouldCrawl.value
+    });
 
     // TODO: Validate URL
     console.log(url.value, shouldCrawl.value);
