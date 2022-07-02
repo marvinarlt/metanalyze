@@ -4,35 +4,37 @@ services:
     container_name: "metanalyze-server"
     build:
       context: "./apps/server"
-      dockerfile: "Dockerfile.development"
-    restart: "always"
+      dockerfile: "Dockerfile.${MODE}"
+    restart: "unless-stopped"
+    env_file:
+      - "./.env"
     ports:
-      - "8000:8000"
+      - "8000:${SERVER_HOST_PORT}"
     volumes:
       - "./apps/server:/srv/www"
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
       - "traefik.http.routers.metanalyze-server.entrypoints=websecure"
-      - "traefik.http.routers.metanalyze-server.rule=Host(`metanalyze-server.docker.local`)"
+      - "traefik.http.routers.metanalyze-server.rule=Host(`${SERVER_HOST_NAME}`)"
       - "traefik.http.routers.metanalyze-server.tls=true"
   client:
     container_name: "metanalyze-client"
     build:
       context: "./apps/client"
-      dockerfile: "Dockerfile.development"
-    restart: "always"
+      dockerfile: "Dockerfile.${MODE}"
+    restart: "unless-stopped"
     depends_on:
       - "server"
     ports:
-      - "3000:3000"
+      - "3000:${CLIENT_HOST_PORT}"
     volumes:
       - "./apps/client:/srv/www"
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
       - "traefik.http.routers.metanalyze-client.entrypoints=websecure"
-      - "traefik.http.routers.metanalyze-client.rule=Host(`metanalyze.docker.local`)"
+      - "traefik.http.routers.metanalyze-client.rule=Host(`${CLIENT_HOST_NAME}`)"
       - "traefik.http.routers.metanalyze-client.tls=true"
 networks:
   default:

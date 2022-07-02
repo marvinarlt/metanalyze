@@ -1,20 +1,29 @@
 import { createServer } from 'http';
 import { Server } from 'socket.io';
-import dotenv from 'dotenv';
 
-dotenv.config();
-
-const { ENVIRONMENT, HOST_DEVELOPMENT, HOST_PRODUCTION, HOST_PORT, HOST_NAME } = process.env;
-
-const serverConfig = {
-  cors: {
-    origin: ENVIRONMENT === 'development' ? HOST_DEVELOPMENT : HOST_PRODUCTION,
-    methods: ['GET', 'POST']
-  }
-};
+const {
+  MODE,
+  SERVER_HOST_NAME,
+  SERVER_HOST_PORT,
+  SERVER_HOST_PATH,
+  CLIENT_HOST_PROTOCOL,
+  CLIENT_HOST_NAME
+} = process.env;
 
 const httpServer = createServer();
-const ioServer = new Server(httpServer, serverConfig);
+const ioServer = new Server(httpServer, {
+  path: SERVER_HOST_PATH,
+  cors: {
+    origin: `${ CLIENT_HOST_PROTOCOL }://${ CLIENT_HOST_NAME }`,
+    methods: ['GET', 'POST'],
+    credentials: true
+  }
+});
 
-ioServer.on('connection', () => console.log('Client connected'));
-httpServer.listen(HOST_PORT, () => console.log(`Server is running on ${ HOST_NAME }:${ HOST_PORT }`));
+ioServer.on('connection', (socket) => {
+  console.log('Client connected');
+});
+
+httpServer.listen(SERVER_HOST_PORT, () => {
+  console.log(`Server is running on ${ SERVER_HOST_NAME }:${ SERVER_HOST_PORT }`)
+});
