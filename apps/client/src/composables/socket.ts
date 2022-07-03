@@ -1,6 +1,8 @@
 import { io, Socket } from 'socket.io-client';
 import { useNotification } from '@app/composables/notification';
 import { socketStore } from '@app/stores/socket';
+import events from '@app/configs/events';
+import emits from '@app/configs/emits';
 
 export function useSocket() {
   const {
@@ -26,7 +28,7 @@ export function useSocket() {
   if (null === connection) {
     connection = connect();
 
-    connection.on('disconnect', () => {
+    connection.on(events.DISCONNECT, () => {
       notifications.add({
         type: 'error',
         title: 'notifications.disconnected.title',
@@ -37,7 +39,13 @@ export function useSocket() {
     socketStore.set(connection as Socket);
   }
 
+  connection.on(events.PAGE_META, (data) => {
+    console.log(data);
+  });
+
   return {
+    events,
+    emits,
     connection,
     connect
   }

@@ -6,7 +6,7 @@
   import FormError from '@app/components/FormError.vue';
 
   const { isUrl } = useValidation();
-  const { connection } = useSocket();
+  const { connection, emits } = useSocket();
 
   const errors: Ref<string[]> = ref([]);
   const url: Ref<string> = ref('');
@@ -18,10 +18,12 @@
        return;
     }
 
-    connection.emit('url:start', {
-      url: url.value,
-      shouldCrawl: shouldCrawl.value
-    });
+    const emitEvent = shouldCrawl.value
+      ? emits.CRAWL_URL
+      : emits.CHECK_URL;
+
+    connection.emit(emitEvent, url.value);
+
 
     // TODO: Redirect to live loader
   }
