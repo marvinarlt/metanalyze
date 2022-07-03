@@ -23,8 +23,7 @@
       shouldCrawl: shouldCrawl.value
     });
 
-    // TODO: Validate URL
-    console.log(url.value, shouldCrawl.value);
+    // TODO: Redirect to live loader
   }
 </script>
 
