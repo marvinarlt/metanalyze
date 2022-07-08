@@ -1,4 +1,6 @@
+import missingInitialData from '@app/routing/middlewares/missingInitialData';
 import DefaultLayout from '@app/layouts/DefaultLayout.vue';
+import AnalyzeLayout from '@app/layouts/AnalyzeLayout.vue';
 
 export default [
   {
@@ -8,6 +10,15 @@ export default [
       layout: DefaultLayout
     },
     component: () => import('@app/pages/Index.vue')
+  },
+  {
+    path: '/analyze',
+    name: 'analyze',
+    meta: {
+      layout: AnalyzeLayout,
+      // middlewares: [missingInitialData]
+    },
+    component: () => import('@app/pages/Analyze.vue')
   },
   {
     path: '/imprint',
