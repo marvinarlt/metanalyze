@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory, RouteLocationNormalized, Router } from 'vue-router';
-import { MiddlewareCollectionType } from '@app/routing/types';
-import RouteMetaInterface from '@app/routing/interfaces/RouteMetaInterface';
-import MiddlewareContextInterface from '@app/routing/interfaces/MiddlewareContextInterface';
+import { MiddlewareCollection, MiddlewareContext, RouteMeta } from '@app/routing/types';
 import indexRoutes from '@app/routing/routes/index';
 
 const router: Router = createRouter({
@@ -12,12 +10,12 @@ const router: Router = createRouter({
 });
 
 /**
- * @param {MiddlewareContextInterface} context 
- * @param {MiddlewareCollectionType} middlewares
+ * @param {MiddlewareContext} context 
+ * @param {MiddlewareCollection} middlewares
  * @param {number} index 
  * @returns {CallableFunction}
  */
-function nextFactory(context: MiddlewareContextInterface, middlewares: MiddlewareCollectionType, index: number): CallableFunction {
+function nextFactory(context: MiddlewareContext, middlewares: MiddlewareCollection, index: number): CallableFunction {
   const subsequentMiddleware: CallableFunction = middlewares[index];
 
   return () => {
@@ -27,25 +25,25 @@ function nextFactory(context: MiddlewareContextInterface, middlewares: Middlewar
 
     const nextMiddleware: CallableFunction = nextFactory(context, middlewares, index + 1);
 
-    return subsequentMiddleware({ ...context, next: nextMiddleware });
+    return subsequentMiddleware(context, nextMiddleware);
   }
 }
 
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized) => {
-  const toRouteMeta: RouteMetaInterface = to.meta;
+  const toRouteMeta: RouteMeta = to.meta;
 
   if (! ('middlewares' in toRouteMeta) || 0 === toRouteMeta.middlewares.length) {
     return true;
   }
 
-  const middlewares: MiddlewareCollectionType = Array.isArray(toRouteMeta.middlewares)
+  const middlewares: MiddlewareCollection = Array.isArray(toRouteMeta.middlewares)
     ? toRouteMeta.middlewares
     : [toRouteMeta.middlewares];
 
-  const context: MiddlewareContextInterface = { from, to, router };
+  const context: MiddlewareContext = { from, to, router };
   const nextMiddleware: CallableFunction = nextFactory(context, middlewares, 1);
 
-  return middlewares[0]({ ...context, next: nextMiddleware });
+  return middlewares[0](context, nextMiddleware);
 });
 
 export default router;
