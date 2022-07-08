@@ -1,0 +1,19 @@
+.progress-bar {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 0.5rem;
+  background-color: prop('color-background-200');
+  border: none;
+  border-radius: prop('border-radius-default');
+  overflow: hidden;
+
+  &-inner {
+    display: block;
+    width: 0;
+    height: 100%;
+    background-image: prop('gradient-primary');
+    background-size: 200%;
+    transition: prop('transition-default');
+  }
+}
