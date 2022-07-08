@@ -4,7 +4,7 @@
  * @param {string} locale
  * @returns {void}
  */
- export function saveLocale(locale: string): void {
+export function saveLocale(locale: string): void {
   localStorage.setItem('locale', locale);
 }
 
