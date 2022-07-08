@@ -37,6 +37,9 @@
         "placeholder": "HTML Schnipsel einfügen",
         "submit": "Schnipsel prüfen"
       }
+    },
+    "analyze": {
+      "search-meta-data": "Suche Meta-Daten …"
     }
   },
   "errors": {

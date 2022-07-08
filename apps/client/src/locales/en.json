@@ -37,6 +37,9 @@
         "placeholder": "Insert HTML snippet",
         "submit": "Check snippet"
       }
+    },
+    "analyze": {
+      "search-meta-data": "Search meta data …"
     }
   },
   "errors": {
