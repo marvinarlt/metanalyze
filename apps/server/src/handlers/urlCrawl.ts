@@ -1,13 +1,35 @@
 import { Socket } from 'socket.io';
+import puppeteer from 'puppeteer';
+import puppeteerConfig from '@app/configs/puppeteer';
+import emits from '@app/configs/emits';
+import Validate from '@app/services/Validate';
+import Crawler from '@app/services/Crawler';
 
 /**
  * Handle the crawl-url event.
  *
  * @param {Socket} socket
  * @param {string} url
- * @returns {void}
+ * @returns {Promise<void>}
  */
+export default async function urlCrawlHandler(socket: Socket, url: string): Promise<void> {
+  if (! Validate.url(url)) {
+    socket.emit(emits.INVALID_URL, url);
+    return;
+  }
 
-export default function urlCrawlHandler(socket: Socket, url: string): void {
-  console.log('Crawl:', url);
+  const browser = await puppeteer.launch(puppeteerConfig);
+  const page = await browser.newPage();
+
+  const crawler = new Crawler(url, page);
+
+  crawler.run();
+
+  crawler.on('update', (data: any) => {
+    socket.emit(emits.PAGE_META, data);
+  });
+
+  crawler.on('complete', () => {
+    browser.close();
+  });
 }

@@ -5,8 +5,8 @@ import { Socket } from 'socket.io';
  * 
  * @param {Socket} socket
  * @param {string} snippet
- * @returns {void}
+ * @returns {Promise<void>}
  */
-export default function snippetCheckHandler(socket: Socket, snippet: string): void {
+export default async function snippetCheckHandler(socket: Socket, snippet: string): Promise<void> {
   
 }

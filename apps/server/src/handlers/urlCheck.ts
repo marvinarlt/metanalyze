@@ -14,7 +14,7 @@ import MetaExtractor from '@app/services/MetaExtractor';
  */
 
 export default async function urlCheckHandler(socket: Socket, url: string): Promise<void> {
-  if (!Validate.url(url)) {
+  if (! Validate.url(url)) {
     socket.emit(emits.INVALID_URL, url);
     return;
   }
