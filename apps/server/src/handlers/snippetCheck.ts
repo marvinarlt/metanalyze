@@ -7,6 +7,6 @@ import { Socket } from 'socket.io';
  * @param {string} snippet
  * @returns {void}
  */
-export default function checkSnippetHandler(socket: Socket, snippet: string): void {
+export default function snippetCheckHandler(socket: Socket, snippet: string): void {
   
 }
