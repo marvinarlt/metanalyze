@@ -1,0 +1,24 @@
+.analyze-layout {
+  display: flex;
+  align-items: center;
+  max-width: prop('max-width-default');
+  min-height: 100vh;
+  margin-inline: auto;
+  padding-inline: 1rem;
+
+  .branding {
+    display: block;
+    padding-block: 2rem;
+    
+    &-item {
+      display: block;
+      width: 100%;
+      max-width: 8.5rem;
+      margin-inline: auto;
+    }
+  }
+
+  .main {
+    padding-block: 2rem;
+  }
+}

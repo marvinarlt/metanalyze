@@ -1,0 +1,33 @@
+.page-analyze {
+  .information {
+    display: flex;
+    column-gap: 3rem;
+    margin-top: 1rem;
+
+    &-page {
+      flex-grow: 1;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    &-amount {
+      flex-shrink: 0;
+      color: prop('color-text-500');
+      white-space: nowrap;
+
+      &-current {
+        color: prop('color-text-400');
+        font-weight: prop('font-weight-semi-bold');
+      }
+
+      &-split {
+        margin-inline: 0.25rem;
+      }
+
+      &-total {
+        font-size: prop('font-size-small');
+      }
+    }
+  }
+}
