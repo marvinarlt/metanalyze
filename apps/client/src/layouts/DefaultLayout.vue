@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import TheLocaleSelect from '@app/components/TheLocaleSelect.vue';
+  import TheLocaleSelect from '@app/components/TheLocaleSelect.vue';
 
-const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear();
 </script>
 
 <template>
   <div class="layout-default">
-    <div class="navigation">
+    <nav class="navigation">
       <RouterLink class="navigation-branding" to="/" :title="$t('navigation.index.title')">
         <img class="navigation-branding-image" src="/assets/images/branding.svg" :alt="$t('branding.alt')">
       </RouterLink>
       <div class="navigation-tools">
         <TheLocaleSelect />
       </div>
-    </div>
+    </nav>
     <main class="main">
       <slot></slot>
     </main>

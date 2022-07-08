@@ -39,10 +39,6 @@ export function useSocket() {
     socketStore.set(connection as Socket);
   }
 
-  connection.on(events.PAGE_META, (data) => {
-    console.log(data);
-  });
-
   return {
     events,
     emits,

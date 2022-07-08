@@ -6,7 +6,7 @@
 </script>
 
 <template>
-  <div class="page-index">
+  <div class="page-index centered-component">
     <Tabs>
       <Tab label="pages.index.url.label">
         <TheUrlTab />

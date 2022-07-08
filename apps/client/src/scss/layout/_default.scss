@@ -1,10 +1,10 @@
 .layout-default {
-  width: 100%;
-  max-width: prop('max-width-default');
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  width: 100%;
+  max-width: prop('max-width-default');
+  min-height: 100vh;
   margin-inline: auto;
   padding-inline: 1rem;
 

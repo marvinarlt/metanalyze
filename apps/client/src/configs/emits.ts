@@ -1,5 +1,5 @@
 export default {
-  CRAWL_URL: 'crawl-url',
-  CHECK_URL: 'check-url',
-  CHECK_SNIPPET: 'check-snippet'
+  URL_CRAWL: 'url-crawl',
+  URL_CHECK: 'url-check',
+  SNIPPET_CHECK: 'snippet-check'
 }

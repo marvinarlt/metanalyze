@@ -2,11 +2,11 @@
   import { ref, Ref } from 'vue';
   import { ArrowRightIcon, CheckIcon } from 'vue-tabler-icons';
   import { useValidation } from '@app/composables/validation';
-  import { useSocket} from '@app/composables/socket';
+  import { useAnalyze } from '@app/composables/analyze';
   import FormError from '@app/components/FormError.vue';
 
   const { isUrl } = useValidation();
-  const { connection, emits } = useSocket();
+  const analyze = useAnalyze();
 
   const errors: Ref<string[]> = ref([]);
   const url: Ref<string> = ref('');
@@ -18,14 +18,7 @@
        return;
     }
 
-    const emitEvent = shouldCrawl.value
-      ? emits.CRAWL_URL
-      : emits.CHECK_URL;
-
-    connection.emit(emitEvent, url.value);
-
-
-    // TODO: Redirect to live loader
+    analyze.url(url.value, shouldCrawl.value);
   }
 </script>
 
