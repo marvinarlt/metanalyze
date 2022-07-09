@@ -111,7 +111,7 @@ export default class Crawler {
    * @returns {Promise<void>}
    */
   private async crawlUrl(url: URL): Promise<void> {
-    const { response, meta } = await this.extractor.extractFromUrl(url.toString());
+    const { requestedUrl, response, meta } = await this.extractor.extractFromUrl(url.toString());
 
     if (! response.ok) {
       this.invalidUrls.set(url.toString(), url);
@@ -120,18 +120,17 @@ export default class Crawler {
       this.updateInternalUrls(meta?.anchors as ElementData[]);
     }
 
-    console.log(url.toString());
+    this.urlsToCrawl.delete(url.toString());
 
     this.emit('update', {
       crawled: this.urlMapToArray(this.crawledUrls),
       internal: this.urlMapToArray(this.internalUrls),
       invalid: this.urlMapToArray(this.invalidUrls),
       queue: this.urlMapToArray(this.urlsToCrawl),
+      requestedUrl,
       response,
       meta,
     });
-
-    this.urlsToCrawl.delete(url.toString());
 
     if (0 === this.urlsToCrawl.size || this.maxCrawlPages === this.crawledUrls.size) {
       this.emit('complete');

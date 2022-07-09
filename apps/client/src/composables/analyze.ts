@@ -22,10 +22,18 @@ export function useAnalyze() {
     analyzeStore.setInitialUrl(url);
     analyzeStore.setInitialShouldCrawl(shouldCrawl);
 
-    connection.on(events.PAGE_META, (data) => {
-      console.log(data);
-      if (data.response.ok) {
-        analyzeStore.set(data.requestedUrl, data.meta);
+    connection.on(events.PAGE_META, ({ requestedUrl, response, meta, queue, crawled, internal, invalid }) => {
+      analyzeStore.setQueue(queue);
+      analyzeStore.setCrawled(crawled);
+      analyzeStore.setInternal(internal);
+      analyzeStore.setInvalid(invalid);
+
+      if (response.ok) {
+        analyzeStore.set(requestedUrl, meta);
+      }
+
+      if (0 === queue.length) {
+        router.push({ name: 'dashboard-index' });
       }
     });
     

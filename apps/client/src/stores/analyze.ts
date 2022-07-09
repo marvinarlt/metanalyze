@@ -9,8 +9,10 @@ export const analyzeStore = reactive({
     initialShouldCrawl: false,
     initialSnippet: '',
     lastCrawledPage: '',
-    crawledPages: 0,
-    foundPages: 0,
+    crawled: new Set() as Set<string>,
+    queue: new Set() as Set<string>,
+    internal: new Set() as Set<string>,
+    invalid: new Set() as Set<string>,
     meta: new Map()
   },
 
@@ -22,7 +24,7 @@ export const analyzeStore = reactive({
    */
   setInitialUrl(url: string): void {
     this.state.initialUrl = url;
-    this.state.foundPages = 1;
+    this.state.internal.add(url);
   },
 
   /**
@@ -43,7 +45,63 @@ export const analyzeStore = reactive({
    */
   setInitialSnippet(snippet: string): void {
     this.state.initialSnippet = snippet;
-    this.state.foundPages = 1;
+  },
+
+  /**
+   * Add unique to set.
+   * 
+   * @param {Set<string>} base
+   * @param {string[]} toAdd
+   * @returns {Set<string>}
+   */
+  addUnique(base: Set<string>, toAdd: string[]): Set<string> {
+    toAdd.forEach(((add: string) => {
+      if (! base.has(add)) {
+        base.add(add);
+      }
+    }).bind(this));
+
+    return base;
+  },
+
+  /**
+   * Set all crawled urls.
+   * 
+   * @param {string[]} crawled
+   * @returns {void}
+   */
+  setCrawled(crawled: string[]): void {
+    this.addUnique(this.state.crawled, crawled);
+  },
+
+  /**
+   * Set urls that needs to be crawled.
+   * 
+   * @param {string[]} queue
+   * @returns {void} 
+   */
+  setQueue(queue: string[]): void {
+    this.addUnique(this.state.queue, queue);
+  },
+
+  /**
+   * Set found internal urls.
+   * 
+   * @param {string[]} internal
+   * @returns {void}
+   */
+  setInternal(internal: string[]): void {
+    this.addUnique(this.state.internal, internal);
+  },
+
+  /**
+   * Set invalid urls.
+   * 
+   * @param {string[]} invalid
+   * @returns {void}
+   */
+  setInvalid(invalid: string[]): void {
+    this.addUnique(this.state.invalid, invalid);
   },
 
   /**
@@ -56,7 +114,6 @@ export const analyzeStore = reactive({
   set(url: string, metaData: MetaData): void {
     this.state.meta.set(url, metaData);
     this.state.lastCrawledPage = url;
-    this.state.crawledPages = this.state.meta.size;
   },
 
   /**

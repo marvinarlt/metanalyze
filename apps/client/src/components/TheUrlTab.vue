@@ -18,7 +18,10 @@
        return;
     }
 
-    analyze.url(url.value, shouldCrawl.value);
+    const urlInstance = new URL(url.value);
+    const normalizedUrl = urlInstance.origin + urlInstance.pathname;
+
+    analyze.url(normalizedUrl, shouldCrawl.value);
   }
 </script>
 

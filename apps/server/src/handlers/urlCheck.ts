@@ -25,7 +25,23 @@ export default async function urlCheckHandler(socket: Socket, url: string): Prom
   const extractor = new MetaExtractor(page);
   const pageMeta = await extractor.extractFromUrl(url);
 
-  socket.emit(emits.PAGE_META, pageMeta);
+  if (pageMeta.response.ok) {
+    socket.emit(emits.PAGE_META, {
+      ...pageMeta,
+      internal: [url],
+      crawled: [url],
+      invalid: [],
+      queue: []
+    });
+  } else {
+    socket.emit(emits.PAGE_META, {
+      ...pageMeta,
+      internal: [],
+      crawled: [],
+      invalid: [url],
+      queue: []
+    });
+  }
 
   browser.close();
 }
