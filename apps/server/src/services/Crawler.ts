@@ -1,7 +1,18 @@
 import { Page } from 'puppeteer';
+import path from 'path';
 import MetaExtractor, { ElementData } from '@app/services/MetaExtractor';
 
 export default class Crawler {
+
+  /**
+   * @private
+   * @readonly
+   * 
+   * @var {string[]} allowedExtensions
+   */
+  private readonly allowedExtensions: string[] = [
+    'html', 'htm', 'php'
+  ];
 
   /**
    * @private
@@ -86,6 +97,9 @@ export default class Crawler {
    * @returns {Promise<void>}
    */
   public async run(): Promise<void> {
+    // TODO: Get, parse and check robots.txt
+    // TODO: Extract urlsToCrawl from sitemap.xml
+    
     this.crawlUrl(this.originUrl);
   }
 
@@ -106,7 +120,7 @@ export default class Crawler {
       this.updateInternalUrls(meta?.anchors as ElementData[]);
     }
 
-    console.log(this.urlMapToArray(this.urlsToCrawl));
+    console.log(url.toString());
 
     this.emit('update', {
       crawled: this.urlMapToArray(this.crawledUrls),
@@ -119,7 +133,7 @@ export default class Crawler {
 
     this.urlsToCrawl.delete(url.toString());
 
-    if (0 === this.urlsToCrawl.size) {
+    if (0 === this.urlsToCrawl.size || this.maxCrawlPages === this.crawledUrls.size) {
       this.emit('complete');
       return;
     }
@@ -196,7 +210,11 @@ export default class Crawler {
       return false;
     }
 
-    // TODO: Check file extension
+    const extension = path.extname(url.pathname).slice(1).toLowerCase();
+
+    if ('' !== extension && ! this.allowedExtensions.includes(extension)) {
+      return false;
+    }
 
     return true;
   }
