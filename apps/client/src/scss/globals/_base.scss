@@ -17,10 +17,22 @@ h4, .h4,
 h5, .h5,
 h6, .h6 {
   display: block;
-  margin: 0 0 1em 0;
+  margin: 0 0 0.5em 0;
   font-weight: prop('font-weight-semi-bold');
   line-height: prop('line-height-small');
   color: prop('color-text-300');
+
+  > span {
+    display: block;
+    font-size: 0.6em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: prop('color-primary-400');
+  }
+}
+
+h1, .h1 {
+  font-size: rem(value('font-size-h1'));
 }
 
 p {

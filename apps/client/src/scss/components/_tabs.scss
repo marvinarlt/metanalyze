@@ -41,6 +41,16 @@
   }
 
   &-content {
-    display: block;
+    display: grid;
+  }
+
+  .tab {
+    grid-area: 1 / 1;
+    transition: prop('transition-default');
+
+    &:not(.active) {
+      opacity: 0;
+      visibility: hidden;
+    }
   }
 }
