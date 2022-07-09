@@ -80,3 +80,12 @@ $dark: (
   'color-tooltip-text': #828287,
   'color-tooltip-border': #d5d5d7
 );
+
+$breakpoints: (
+  'tiny': 480px,
+  'small': 640px,
+  'medium': 760px,
+  'large': 992px,
+  'giant': 1200px,
+  'cut': 1620px
+);

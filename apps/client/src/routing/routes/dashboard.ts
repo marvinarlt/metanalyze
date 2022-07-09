@@ -7,7 +7,7 @@ export default [
     name: 'dashboard-index',
     meta: {
       layout: DashboardLayout,
-      middlewares: [missingInitialData]
+      // middlewares: [missingInitialData]
     },
     component: () => import('@app/pages/DashboardIndex.vue')
   }
