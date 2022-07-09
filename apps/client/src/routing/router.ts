@@ -1,10 +1,12 @@
 import { createRouter, createWebHistory, RouteLocationNormalized, Router } from 'vue-router';
 import { MiddlewareCollection, MiddlewareContext, RouteMeta } from '@app/routing/types';
 import indexRoutes from '@app/routing/routes/index';
+import dashboardRoutes from '@app/routing/routes/dashboard';
 
 const router: Router = createRouter({
   history: createWebHistory(),
   routes: [
+    ...dashboardRoutes,
     ...indexRoutes,
   ]
 });
