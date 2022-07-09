@@ -16,7 +16,7 @@ export default [
     name: 'analyze',
     meta: {
       layout: AnalyzeLayout,
-      // middlewares: [missingInitialData]
+      middlewares: [missingInitialData]
     },
     component: () => import('@app/pages/Analyze.vue')
   },
@@ -35,5 +35,13 @@ export default [
       layout: DefaultLayout
     },
     component: () => import('@app/pages/PrivacyPolicy.vue')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'not-found',
+    meta: {
+      layout: DefaultLayout
+    },
+    component: () => import('@app/pages/NotFound.vue')
   }
 ];
