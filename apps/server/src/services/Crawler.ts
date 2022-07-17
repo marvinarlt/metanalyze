@@ -116,14 +116,16 @@ export default class Crawler {
     this.urlsToCrawl.delete(url.toString());
 
     this.emit('update', {
-      crawled: this.urlMapToArray(this.crawledUrls),
-      internal: this.urlMapToArray(this.internalUrls),
-      invalid: this.urlMapToArray(this.invalidUrls),
-      queue: this.urlMapToArray(this.urlsToCrawl),
+      crawled: this.mapKeysToArray(this.crawledUrls),
+      internal: this.mapKeysToArray(this.internalUrls),
+      invalid: this.mapKeysToArray(this.invalidUrls),
+      queue: this.mapKeysToArray(this.urlsToCrawl),
       requestedUrl,
       response,
       meta,
     });
+
+    console.log(meta);
 
     if (0 === this.urlsToCrawl.size || this.maxCrawlPages === this.crawledUrls.size) {
       this.emit('complete');
@@ -151,7 +153,7 @@ export default class Crawler {
    * @param {Map<string, URL>} map
    * @returns {string[]}
    */
-  private urlMapToArray(map: Map<string, URL>): string[] {
+  private mapKeysToArray(map: Map<string, URL>): string[] {
     return Array.from(map.keys());
   }
 
