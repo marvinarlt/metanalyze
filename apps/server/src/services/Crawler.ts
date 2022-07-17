@@ -124,22 +124,23 @@ export default class Crawler {
 
     this.urlsToCrawl.delete(url.toString());
 
-    this.emit('update', {
+    const currentState = {
       crawled: this.mapKeysToArray(this.crawledUrls),
       internal: this.mapKeysToArray(this.internalUrls),
       invalid: this.mapKeysToArray(this.invalidUrls),
-      queue: this.mapKeysToArray(this.urlsToCrawl),
+      queue: this.mapKeysToArray(this.urlsToCrawl)
+    };
+
+    this.emit('update', {
+      ...currentState,
       requestedUrl,
       response,
-      meta,
+      meta
     });
 
     if (0 === this.urlsToCrawl.size || this.maxCrawlPages === this.crawledUrls.size) {
       this.emit('complete', {
-        crawled: this.mapKeysToArray(this.crawledUrls),
-        internal: this.mapKeysToArray(this.internalUrls),
-        invalid: this.mapKeysToArray(this.invalidUrls),
-        queue: this.mapKeysToArray(this.urlsToCrawl),
+        ...currentState,
         sitemap: this.sitemapBuilder.get()
       });
       return;
