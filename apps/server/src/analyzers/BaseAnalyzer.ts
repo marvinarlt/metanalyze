@@ -14,7 +14,10 @@ export default class BaseAnalyzer {
     if (! attribute) {
       element.errors.push({
         type: 'attribute-missing',
-        attribute: attribute
+        attribute: {
+          name: attributeName,
+          value: ''
+        }
       });
       return;
     }
@@ -22,7 +25,7 @@ export default class BaseAnalyzer {
     if (0 === attribute.value.length) {
       element.errors.push({
         type: 'attribute-empty',
-        attribute: attribute
+        attribute
       });
     }
   }
