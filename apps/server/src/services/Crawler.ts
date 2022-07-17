@@ -1,6 +1,6 @@
-import { Page } from 'puppeteer';
 import path from 'path';
 import Extractor, { ElementData } from '@app/services/Extractor';
+import SitemapBuilder from '@app/services/SitemapBuilder';
 
 export default class Crawler {
 
@@ -72,6 +72,13 @@ export default class Crawler {
   private extractor: Extractor;
 
   /**
+   * @private
+   * 
+   * @var {SitemapBuilder} sitemapBuilder
+   */
+  private sitemapBuilder: SitemapBuilder;
+
+  /**
    * @public
    * @constructor
    * 
@@ -81,6 +88,7 @@ export default class Crawler {
   public constructor(url: string, extractor: Extractor) {
     this.originUrl = new URL(url);
     this.extractor = extractor;
+    this.sitemapBuilder = new SitemapBuilder();
   }
 
   /**
@@ -110,6 +118,7 @@ export default class Crawler {
       this.invalidUrls.set(url.toString(), url);
     } else {
       this.crawledUrls.set(url.toString(), url);
+      this.sitemapBuilder.add(url);
       this.updateInternalUrls(meta?.anchors as ElementData[]);
     }
 
@@ -125,10 +134,14 @@ export default class Crawler {
       meta,
     });
 
-    console.log(meta);
-
     if (0 === this.urlsToCrawl.size || this.maxCrawlPages === this.crawledUrls.size) {
-      this.emit('complete');
+      this.emit('complete', {
+        crawled: this.mapKeysToArray(this.crawledUrls),
+        internal: this.mapKeysToArray(this.internalUrls),
+        invalid: this.mapKeysToArray(this.invalidUrls),
+        queue: this.mapKeysToArray(this.urlsToCrawl),
+        sitemap: this.sitemapBuilder.get()
+      });
       return;
     }
 
