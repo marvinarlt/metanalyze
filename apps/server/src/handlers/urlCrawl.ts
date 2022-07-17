@@ -28,10 +28,11 @@ export default async function urlCrawlHandler(socket: Socket, url: string): Prom
   crawler.run();
 
   crawler.on('update', (data: any) => {
-    socket.emit(emits.PAGE_META, data);
+    socket.emit(emits.PAGE_META_UPDATE, data);
   });
 
-  crawler.on('complete', () => {
+  crawler.on('complete', (data: any) => {
     browser.close();
+    socket.emit(emits.PAGE_META_COMPLETE, data);
   });
 }

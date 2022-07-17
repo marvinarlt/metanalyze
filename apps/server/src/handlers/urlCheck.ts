@@ -26,7 +26,7 @@ export default async function urlCheckHandler(socket: Socket, url: string): Prom
   const pageMeta = await extractor.extractFromUrl(url);
 
   if (pageMeta.response.ok) {
-    socket.emit(emits.PAGE_META, {
+    socket.emit(emits.PAGE_META_UPDATE, {
       ...pageMeta,
       internal: [url],
       crawled: [url],
@@ -34,7 +34,7 @@ export default async function urlCheckHandler(socket: Socket, url: string): Prom
       queue: []
     });
   } else {
-    socket.emit(emits.PAGE_META, {
+    socket.emit(emits.PAGE_META_UPDATE, {
       ...pageMeta,
       internal: [],
       crawled: [],

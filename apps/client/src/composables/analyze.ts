@@ -22,7 +22,7 @@ export function useAnalyze() {
     analyzeStore.setInitialUrl(url);
     analyzeStore.setInitialShouldCrawl(shouldCrawl);
 
-    connection.on(events.PAGE_META, ({ requestedUrl, response, meta, queue, crawled, internal, invalid }) => {
+    connection.on(events.PAGE_META_UPDATE, ({ requestedUrl, response, meta, queue, crawled, internal, invalid }) => {
       analyzeStore.setQueue(queue);
       analyzeStore.setCrawled(crawled);
       analyzeStore.setInternal(internal);
@@ -35,6 +35,10 @@ export function useAnalyze() {
       if (0 === queue.length) {
         router.push({ name: 'dashboard-index' });
       }
+    });
+
+    connection.on(events.PAGE_META_COMPLETE, (data) => {
+      console.log(data.sitemap);
     });
     
     router.push({ name: 'analyze' });
