@@ -1,4 +1,5 @@
 import { HTTPResponse, Page } from 'puppeteer';
+import Analyzer from '@app/analyzers/Analyzer';
 
 export default class Extractor {
 
@@ -24,12 +25,20 @@ export default class Extractor {
   private page: Page;
 
   /**
+   * @private
+   * 
+   * @var {Analyzer} analyzer
+   */
+  private analyzer: Analyzer;
+
+  /**
    * @constructor
    * 
    * @param {Page} page
    */
   public constructor(page: Page) {
     this.page = page;
+    this.analyzer = new Analyzer();
   }
 
   /**
@@ -139,7 +148,9 @@ export default class Extractor {
     const metaData: MetaData = {};
 
     for (const [ propertyName, selector ] of Object.entries(this.selectors)) {
-      metaData[propertyName] = await this.collectDataBySelector(selector);
+      const elementData = await this.collectDataBySelector(selector);
+      
+      metaData[propertyName] = this.analyzer.analyze(propertyName, elementData);
     }
 
     return metaData;
@@ -167,7 +178,7 @@ export default class Extractor {
     
         for (const attribute of element.attributes) {
           attributes.push({
-            name: attribute.name,
+            name: attribute.name.toLowerCase(),
             value: attribute.value
           });
         }
@@ -179,8 +190,8 @@ export default class Extractor {
         return {
           attributes: getAttributesFromElement(element),
           tagName: element.tagName.toLowerCase(),
-          html: element.outerHTML,
-          content: element.innerHTML
+          html: element.outerHTML.trim(),
+          content: element.innerHTML.trim()
         }
       });
     });
