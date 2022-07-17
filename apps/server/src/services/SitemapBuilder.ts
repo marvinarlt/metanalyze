@@ -14,10 +14,10 @@ export default class SitemapBuilder {
    * @returns {void}
    */
   public add(url: URL): void {
-    let pathname = this.trim(url.pathname, '/');
-    let splittedPathname = pathname.split('/');
-    let pathnameParts = splittedPathname.map(pathname => ('' === pathname) ? 'index' : pathname);
-    let lastPathnamePartIndex = pathnameParts.length - 1;
+    const pathname = this.trim(url.pathname, '/');
+    const splittedPathname = pathname.split('/');
+    const pathnameParts = splittedPathname.map(pathname => ('' === pathname) ? 'index' : pathname);
+    const lastPathnamePartIndex = pathnameParts.length - 1;
     let currentSitemap = this.sitemap;
 
     for (let [ pathnamePartIndex, pathnamePart ] of Object.entries(pathnameParts)) {
@@ -28,7 +28,7 @@ export default class SitemapBuilder {
         }
       }
 
-      let currentSitemapPage = currentSitemap[pathnamePart];
+      const currentSitemapPage = currentSitemap[pathnamePart];
 
       if (parseInt(pathnamePartIndex) === lastPathnamePartIndex) {
         this.addLastPart(currentSitemapPage, url.toString());
