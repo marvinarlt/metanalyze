@@ -3,7 +3,7 @@ import puppeteer from 'puppeteer';
 import puppeteerConfig from '@app/configs/puppeteer';
 import emits from '@app/configs/emits';
 import Validate from '@app/services/Validate';
-import MetaExtractor from '@app/services/MetaExtractor';
+import Extractor from '@app/services/Extractor';
 
 /**
  * Handle the check-url event.
@@ -22,7 +22,7 @@ export default async function urlCheckHandler(socket: Socket, url: string): Prom
   const browser = await puppeteer.launch(puppeteerConfig);
   const page = await browser.newPage();
 
-  const extractor = new MetaExtractor(page);
+  const extractor = new Extractor(page);
   const pageMeta = await extractor.extractFromUrl(url);
 
   if (pageMeta.response.ok) {

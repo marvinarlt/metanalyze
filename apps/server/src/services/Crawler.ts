@@ -1,6 +1,6 @@
 import { Page } from 'puppeteer';
 import path from 'path';
-import MetaExtractor, { ElementData } from '@app/services/MetaExtractor';
+import Extractor, { ElementData } from '@app/services/Extractor';
 
 export default class Crawler {
 
@@ -67,27 +67,20 @@ export default class Crawler {
   /**
    * @private
    * 
-   * @var {Page} page
+   * @var {Extractor} extractor
    */
-  private page: Page;
-
-  /**
-   * @private
-   * 
-   * @var {MetaExtractor} extractor
-   */
-  private extractor: MetaExtractor;
+  private extractor: Extractor;
 
   /**
    * @public
    * @constructor
    * 
    * @param {Page} page
+   * @param {Extractor} extractor
    */
-  public constructor(url: string, page: Page) {
+  public constructor(url: string, extractor: Extractor) {
     this.originUrl = new URL(url);
-    this.page = page;
-    this.extractor = new MetaExtractor(page);
+    this.extractor = extractor;
   }
 
   /**

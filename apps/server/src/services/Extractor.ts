@@ -1,6 +1,6 @@
 import { HTTPResponse, Page } from 'puppeteer';
 
-export default class MetaExtractor {
+export default class Extractor {
 
   /**
    * @private

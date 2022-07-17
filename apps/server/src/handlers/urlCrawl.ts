@@ -4,6 +4,7 @@ import puppeteerConfig from '@app/configs/puppeteer';
 import emits from '@app/configs/emits';
 import Validate from '@app/services/Validate';
 import Crawler from '@app/services/Crawler';
+import Extractor from '@app/services/Extractor';
 
 /**
  * Handle the crawl-url event.
@@ -21,7 +22,8 @@ export default async function urlCrawlHandler(socket: Socket, url: string): Prom
   const browser = await puppeteer.launch(puppeteerConfig);
   const page = await browser.newPage();
 
-  const crawler = new Crawler(url, page);
+  const extractor = new Extractor(page);
+  const crawler = new Crawler(url, extractor);
 
   crawler.run();
 
