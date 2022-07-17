@@ -178,6 +178,7 @@ export default class Extractor {
       return elements.map((element) => {
         return {
           attributes: getAttributesFromElement(element),
+          tagName: element.tagName.toLowerCase(),
           html: element.outerHTML,
           content: element.innerHTML
         }
