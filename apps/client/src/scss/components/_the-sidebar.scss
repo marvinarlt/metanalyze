@@ -55,6 +55,9 @@
 
     &-label {
       color: currentColor;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
 
     .sidebar-list {
@@ -64,7 +67,7 @@
       list-style-type: none;
 
       &-item {
-        display: block;
+        display: flex;
         margin-block: 0.5rem;
         
         &.error {
