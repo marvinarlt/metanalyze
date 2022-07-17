@@ -1,0 +1,10 @@
+.layout-dashboard {
+  display: flex;
+  height: 100vh;
+
+  .page-wrapper {
+    flex-grow: 1;
+    padding-inline: 2rem;
+    overflow-y: auto;
+  }
+}

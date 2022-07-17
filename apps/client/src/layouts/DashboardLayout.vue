@@ -5,6 +5,8 @@
 <template>
   <div class="layout-dashboard">
     <TheSidebar />
-    <slot></slot>
+    <div class="page-wrapper">
+      <slot></slot>
+    </div>
   </div>
 </template>

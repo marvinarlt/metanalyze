@@ -12,6 +12,7 @@
   @include breakpoint('large') {
     position: initial;
     inset: unset;
+    flex-shrink: 0;
   }
 
   &-content {
